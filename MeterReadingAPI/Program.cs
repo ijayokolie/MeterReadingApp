@@ -1,4 +1,5 @@
 using MeterReadingAPI.Data;
+using MeterReadingAPI.Services;
 using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -9,6 +10,8 @@ builder.Services.AddDbContext<CustomerMeterReadingContext>(options =>
     options.UseSqlServer(builder.Configuration["ConnectionStrings:Default"]);
 });
 builder.Services.AddTransient<TestDataSeeder>();
+builder.Services.AddScoped<IMeterReadingService, MeterReadingService>();
+
 
 // Add services to the container.
 
